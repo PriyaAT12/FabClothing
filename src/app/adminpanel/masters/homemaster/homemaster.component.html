@@ -1,0 +1,121 @@
+<div class="container-fluid background">
+    <div class="alert" [class.visible]="isVisible">
+        Registration Sucessfully
+    </div>
+</div>
+
+<form class="card g-3 row needs-validation" novalidate [formGroup]="registerationForm">
+    <mat-card class="matcardstyle matcard  body">
+        <div class="container">
+            <div class="contaier">
+                <br>
+                <h1 class="text-center"></h1>
+                <div class="row">
+                    <div class="col-md 12 ">
+                        <h4 class="heading"><b>Home</b></h4>
+                    </div>
+                </div>
+
+                <hr class="hrstyle">
+                
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="">Start Number</mat-label>
+                            <input matInput placeholder="Start Number" formControlName="startNumber"
+                                 minlength="1">
+                            <mat-error
+                                *ngIf="registerationForm.get('startNumber')?.hasError('required') && registerationForm.get('startNumber')?.touched">
+                                Admin Name is required</mat-error>
+                            <mat-error
+                                *ngIf="registerationForm.get('startNumber')?.hasError('pattern') && registerationForm.get('startNumber')?.touched">
+                                Allows Only Charactors </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- startNumber -->
+
+                    <div class="form-group col-md-4">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="">End Number</mat-label>
+                            <input matInput placeholder="End Number" formControlName="endNumber"
+                                minlength="1">
+                            <mat-error
+                                *ngIf="registerationForm.get('endNumber')?.hasError('required') && registerationForm.get('endNumber')?.touched">
+                                Admin Name is required</mat-error>
+                            <mat-error
+                                *ngIf="registerationForm.get('endNumber')?.hasError('pattern') && registerationForm.get('endNumber')?.touched">
+                                Allows Only Charactors</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Email -->
+
+                    <div class="mb-3 col-md-4">
+                        <mat-form-field class="example-full-width" style="width:100%;" appearance="outline">
+                            <mat-label>Status</mat-label>
+                            <mat-select matInput formControlName="status">
+                                <mat-option>Select Status</mat-option>
+                                <mat-option value="Active">Active</mat-option>
+                                <mat-option value="Inactive">Inactive</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Status -->
+
+                    <div class="col-md-12 text-center">
+                        <button *ngIf="issubmit" class="btn btnS" (click)="submit()">Submit</button>
+                        <!-- submit btn -->
+
+                        <button *ngIf="isupdate"  class="btn btnS" (click)="update()">update</button>
+                        <!-- update btn -->
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </mat-card>
+</form>
+
+<!-- ///table/// -->
+<mat-card class="mt-5">
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="table-responsive" #epltable>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
+
+
+
+            <ng-container matColumnDef="startNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Number </th>
+                <td mat-cell *matCellDef="let element"> {{element?.startNumber?.noId}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="endNumber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> End Number </th>
+                <td mat-cell *matCellDef="let element"> {{element?.endNumber?.noId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element?.status}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <br>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5"
+            [showFirstLastButtons]="true"></mat-paginator>
+
+    </div>
+</mat-card>

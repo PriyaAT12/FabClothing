@@ -1,0 +1,17 @@
+.example-spacer {
+    flex: 1 1 auto;
+    
+  }
+  .container-fluid{
+    position: sticky;
+    z-index: 999;
+    top: -10px;
+    box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
+  }
+  .mat-toolbar {
+    background-color: white; 
+  }
+  .dropdown-item{
+    text-align: center;
+  }
+  

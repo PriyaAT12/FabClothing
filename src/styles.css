@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Webpixels CSS */
+/* Utility and component-centric Design System based on Bootstrap for fast, responsive UI development */
+/* URL: https://github.com/webpixels/css */
+
+@import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+
+/* Bootstrap Icons */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+
+.modal-backdrop {
+    /* bug fix - no overlay */    
+    display: none;    
+}
+
+table {
+    width: 100%;
+}
+
+th.mat-header-cell {
+    color: white;
+    font-size: 15px;
+}
+
+th {
+    background-image:linear-gradient(rgb(242,140,150),rgb(231,113,147));
+    text-align: center;
+    padding: -15px;
+    margin: -5px;
+    /* width:1%; */
+    margin-top: -20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+}
+
+.btnS{
+    background-image: linear-gradient(rgb(242,140,150),rgb(231,113,147));
+    color: white;
+}
+.btnS:hover{
+    color: black !important;
+    font-weight: bold;
+    background-image: linear-gradient(rgb(255, 255, 255),rgb(231, 231, 231));
+    border: 1px solid black;
+}

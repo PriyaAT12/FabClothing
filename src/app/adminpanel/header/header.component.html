@@ -1,0 +1,58 @@
+<div class="container-fluid m-0 p-0">
+    <mat-toolbar class="shadow p-3 bg-white rounded">
+    
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    
+        <span>
+            <a class="navbar-brand py-lg-2 pt-4 mb-lg-5 px-lg-6 me-0 mt-5" href="#">
+             
+            </a>
+        </span>
+    
+        <span class="example-spacer"></span>
+    
+        <div class="navbar-user">
+            <!-- Dropdown -->
+            <div class="dropdown">
+                <div class="d-flex">
+    
+    
+                    <div>
+                        <button mat-button>
+                            <mat-icon>settings</mat-icon>
+                        </button>
+                    </div>
+    
+    
+                    <div>
+                        <button mat-button>
+                            <mat-icon>help_outline</mat-icon>
+                        </button>
+                    </div>
+    
+    
+                    <div>
+                        <button mat-button [matMenuTriggerFor]="menu">
+                            <mat-icon>person_outline</mat-icon>
+                        </button>
+    
+                        <mat-menu #menu="matMenu">
+                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Billing</a>
+    
+                            <button mat-menu-item (click)="logout()">
+                                <mat-icon>exit_to_app</mat-icon>
+                                Sign out
+                            </button>
+                        </mat-menu>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    
+    </mat-toolbar>
+    </div>

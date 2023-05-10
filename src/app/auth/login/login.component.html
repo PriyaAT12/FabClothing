@@ -1,0 +1,68 @@
+<div class="wrapper">
+    <div class="container main">
+        <div class="row">
+
+            <div class="col-md-6 side-image">
+                <div class="text">
+                    <!-- <p>Join the community of developers</p> -->
+                </div>
+            </div>
+
+            <div class="col-md-6 right">
+
+                <form [formGroup]="loginform">
+                    <div class="inavalid-class input-box">
+                        <h1>Admin Log In</h1>
+                        <div class="form-group input-field">
+                            <input type="text" class="input" id="phone" required autocomplete="off"
+                                formControlName="phone" 
+                                [ngClass]="{ 'is-invalid': loginform.get('phone')?.touched && loginform.get('phone')?.invalid }">
+                            <label for="phone">Phone</label>
+                            <span style="color: red;" *ngIf="phone?.touched && phone?.invalid">
+                                phone required
+                            </span>
+                        </div>
+
+                        <div class="form-group input-field">
+                            <input type="password" class="input" id="password" required autocomplete="off"
+                                formControlName="password" 
+                                [ngClass]="{ 'is-invalid': loginform.get('password')?.touched && loginform.get('password')?.invalid }">
+                            <label for="password">Password</label>
+                            <span style="color: red;" *ngIf="password?.touched && password?.invalid">
+                                password required
+                            </span>
+
+                            <div class="d-flex justify-content-end pb-1">
+                                <span>Forgot Password ?</span>
+                            </div>
+
+                        </div>
+
+                        <div class="input-field">
+                            <!-- <input type="submit" class="submit" [disabled]="loginform.invalid"> -->
+                            <div class="btn submit" (click)="submit()"> Submit </div>
+                        </div>
+
+                    </div>
+                    <!-- <div class="Login">
+                        <span>Don't have an account? <a style="text-decoration: none;"
+                                routerLink="/admin/auth/admin-login" href="">admin-login
+                                here</a></span><br>
+                        <span>Don't have an account? <a style="text-decoration: none;"
+                                routerLink="/admin/auth/sub-admin-login" href="">sub-admin-login
+                                here</a></span><br>
+                        <span>Don't have an account? <a style="text-decoration: none;"
+                                routerLink="/admin/auth/distributer-login" href="">distributer-login
+                                here</a></span><br>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                        <span>Don't have an account? <a style="text-decoration: none;"
+                                routerLink="/admin/auth/retailer-login" href="">retailer-login
+                                here</a></span>
+                    </div> -->
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
