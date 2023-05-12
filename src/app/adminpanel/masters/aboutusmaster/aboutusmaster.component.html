@@ -1,1 +1,138 @@
-<p>aboutusmaster works!</p>
+
+<form class="card g-3 row needs-validation" novalidate [formGroup]="AboutMasterForm">
+    <mat-card class="matcardstyle matcard  body">
+        <div class="container">
+            <div class="container">
+                <br>
+                <h1 class="text-center"></h1>
+                <div class="row">
+                    <div class="col-md 12 ">
+                        <h4 class="heading"><b>About Us Master</b></h4>
+                    </div>
+                </div>
+
+                <hr class="hrstyle">
+                
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <mat-label class="photo">Upload Photo</mat-label>
+                        <input type="file" #files (change)="handleFileInput($event)" formControlName="image" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <img [src]="AboutMasterModel.image" height="150" width="250">
+                    </div>
+
+                 
+                    <div class="form-group col-md-4">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="">About Us Heading</mat-label>
+                            <input matInput placeholder="banner Name" formControlName="aboutUsHeading" [(ngModel)]="AboutMasterModel.aboutUsHeading"
+                                 minlength="1">
+                            <mat-error
+                                *ngIf="AboutMasterForm.get('aboutUsHeading')?.hasError('required') && AboutMasterForm.get('aboutUsHeading')?.touched">
+                                About Us Heading is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                   <div class="col-md-12">
+                    <div class="form-group editor">
+                        <angular-editor [config]="config" formControlName="aboutUsDescription"
+                            [(ngModel)]="AboutMasterModel.aboutUsDescription"></angular-editor>
+                    </div>
+                   </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group editor">
+                            <angular-editor [config]="config" formControlName="missionDescription"
+                                [(ngModel)]="AboutMasterModel.missionDescription"></angular-editor>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group editor">
+                            <angular-editor [config]="config" formControlName="visionDescription"
+                                [(ngModel)]="AboutMasterModel.visionDescription"></angular-editor>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <mat-form-field class="example-full-width" style="width:100%;" appearance="outline">
+                            <mat-label>Status</mat-label>
+                            <mat-select matInput formControlName="status">
+                                <mat-option>Select Status</mat-option>
+                                <mat-option value="Active">Active</mat-option>
+                                <mat-option value="Inactive">Inactive</mat-option>
+                            </mat-select>
+                            <mat-error
+                            *ngIf="AboutMasterForm.get('status')?.hasError('required') && AboutMasterForm.get('status')?.touched">
+                            Status is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <button *ngIf="issubmit" class="btn btnS" (click)="submit()">Submit</button>
+                        <!-- submit btn -->
+
+                        <button *ngIf="isupdate"  class="btn btnS" (click)="update()">update</button>
+                        <!-- update btn -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </mat-card>
+</form>
+
+<!-- ///table/// -->
+<mat-card class="mt-5">
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="table-responsive" #epltable>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
+            <ng-container matColumnDef="Sr.No.">
+                <th mat-header-cell *matHeaderCellDef> Sr.No. </th>
+                <td mat-cell *matCellDef="let element; index as i;">
+                    {{paginator.pageSize * paginator.pageIndex + i + 1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="aboutUsHeading">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>AboutUsHeading</th>
+                <td mat-cell *matCellDef="let element"> {{element?.aboutUsHeading}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="aboutUsDescription">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> AboutUsDescription </th>
+                <td mat-cell *matCellDef="let element"> {{element?.aboutUsDescription}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element?.status}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="btn btn-primary square" (click)="edit(element)"><i
+                        class="fa-sharp fa-solid fa-pen-to-square"></i></button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <br>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5"
+            [showFirstLastButtons]="true"></mat-paginator>
+
+    </div>
+</mat-card>

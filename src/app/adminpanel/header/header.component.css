@@ -8,10 +8,18 @@
     top: -10px;
     box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
   }
-  .mat-toolbar {
-    background-color: white; 
+
+  ::ng-deep .mat-icon{
+    color: #FFF;
+  }
+  ::ng-deep .mat-toolbar {
+    background-color: #000; 
   }
   .dropdown-item{
     text-align: center;
   }
   
+
+  .logo{
+    width: 140px;
+  }

@@ -6,6 +6,7 @@ import { GallerymasterComponent } from './gallerymaster/gallerymaster.component'
 import { SeasonwisemasterComponent } from './seasonwisemaster/seasonwisemaster.component';
 import { ContactusmasterComponent } from './contactusmaster/contactusmaster.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductmasterComponent } from './productmaster/productmaster.component';
 
 const routes: Routes = [
   {path:'homemaster', component: HomemasterComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'gallerymaster', component: GallerymasterComponent},
   {path:'seasonwisemaster', component: SeasonwisemasterComponent},
   {path:'contactusmaster', component: ContactusmasterComponent},
-  {path:'dashboard', component: DashboardComponent}
+  {path:'dashboard', component: DashboardComponent},
+  {path:'productmaster',component:ProductmasterComponent}
 ];
 
 @NgModule({

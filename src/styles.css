@@ -38,19 +38,23 @@ th.mat-header-cell {
 }
 
 th {
-    background-image:linear-gradient(rgb(242,140,150),rgb(231,113,147));
+    background:#000;
     text-align: center;
-    padding: -15px;
-    margin: -5px;
+    padding: 20px;
+    /* margin: -5px; */
     /* width:1%; */
-    margin-top: -20px;
+    /* margin-top: -20px; */
     font-size: 15px;
     font-weight: 500;
     color: white;
 }
 
+.mat-header-cell ,.mat-table{
+    text-align: center !important;
+}
+
 .btnS{
-    background-image: linear-gradient(rgb(242,140,150),rgb(231,113,147));
+    background:#000;
     color: white;
 }
 .btnS:hover{

@@ -1,1 +1,51 @@
-<p>contactusmaster works!</p>
+
+
+<!-- ///table/// -->
+<mat-card class="mt-5">
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="table-responsive" #epltable>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
+
+
+
+            <ng-container matColumnDef="Sr.No">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Sr.No</th>
+                <td mat-cell *matCellDef="let element; index as i;">
+                    {{paginator.pageSize * paginator.pageIndex + i + 1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mobileNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile Number</th>
+                <td mat-cell *matCellDef="let element"> {{element?.mobileNo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="contactEmail">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Email</th>
+                <td mat-cell *matCellDef="let element"> {{element?.contactEmail}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="contactAddress">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Address</th>
+                <td mat-cell *matCellDef="let element"> {{element?.contactAddress}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element?.status}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <br>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5"
+            [showFirstLastButtons]="true"></mat-paginator>
+
+    </div>
+</mat-card>

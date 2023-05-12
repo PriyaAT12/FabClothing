@@ -1,4 +1,4 @@
-<form class="card g-3 row needs-validation" novalidate [formGroup]="GalleryMasterForm">
+<form class="card g-3 row needs-validation" novalidate [formGroup]="ProductMasterForm">
     <mat-card class="matcardstyle matcard  body">
         <div class="container">
             <div class="contaier">
@@ -6,29 +6,29 @@
                 <h1 class="text-center"></h1>
                 <div class="row">
                     <div class="col-md 12 ">
-                        <h4 class="heading"><b>Gallery Master</b></h4>
+                        <h4 class="heading"><b>Home Master</b></h4>
                     </div>
                 </div>
 
                 <hr class="hrstyle">
 
                 <div class="row">
-
                     <div class="form-group col-md-4">
                         <mat-label class="photo">Upload Photo</mat-label>
-                        <input type="file" #files (change)="handleFileInput($event)" formControlName="image" />
+                        <input type="file" #files (change)="handleFileInput($event)" formControlName="productImage" />
                     </div>
+
                     <div class="form-group col-md-4">
-                        <img [src]="GalleryMasterModel.image" height="150" width="250">
+                        <img [src]="ProductMasterModel.productImage" height="150" width="250">
                     </div>
 
                     <div class="form-group col-md-4">
                         <mat-form-field class="w-100" appearance="outline">
                             <mat-label class="">Name</mat-label>
-                            <input matInput placeholder="banner Name" formControlName="name"
-                                [(ngModel)]="GalleryMasterModel.name" minlength="1">
+                            <input matInput placeholder=" Name" formControlName="name"
+                                [(ngModel)]="ProductMasterModel.name" minlength="1">
                             <mat-error
-                                *ngIf="GalleryMasterForm.get('name')?.hasError('required') && GalleryMasterForm.get('name')?.touched">
+                                *ngIf="ProductMasterForm.get('name')?.hasError('required') && ProductMasterForm.get('name')?.touched">
                                 Name is required</mat-error>
                         </mat-form-field>
                     </div>
@@ -36,49 +36,56 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <mat-form-field class="w-100" appearance="outline">
-                            <mat-label class="">Type</mat-label>
-                            <input matInput placeholder="Type" formControlName="type"
-                                [(ngModel)]="GalleryMasterModel.type" minlength="1">
-                            <mat-error
-                                *ngIf="GalleryMasterForm.get('type')?.hasError('required') && GalleryMasterForm.get('type')?.touched">
-                                Type is required</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        <mat-form-field class="w-100" appearance="outline">
-                            <mat-label class="">Price</mat-label>
-                            <input matInput placeholder="Price" formControlName="price"
-                                [(ngModel)]="GalleryMasterModel.price" minlength="1">
-                            <mat-error
-                                *ngIf="GalleryMasterForm.get('price')?.hasError('required') && GalleryMasterForm.get('price')?.touched">
-                                Price is required</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        <mat-form-field class="w-100" appearance="outline">
                             <mat-label class="">Description</mat-label>
                             <input matInput placeholder="Description" formControlName="description"
-                                [(ngModel)]="GalleryMasterModel.description" minlength="1">
+                                [(ngModel)]="ProductMasterModel.description" minlength="1">
                             <mat-error
-                                *ngIf="GalleryMasterForm.get('description')?.hasError('required') && GalleryMasterForm.get('description')?.touched">
-                                Description is required</mat-error>
+                                *ngIf="ProductMasterForm.get('description')?.hasError('required') && ProductMasterForm.get('description')?.touched">
+                                description is required</mat-error>
                         </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="">Whatsapp Number</mat-label>
+                            <input matInput placeholder="whatsapp Number" formControlName="whatsappNo"
+                                [(ngModel)]="ProductMasterModel.whatsappNo" minlength="1">
+                            <mat-error
+                                *ngIf="ProductMasterForm.get('whatsappNo')?.hasError('required') && ProductMasterForm.get('whatsappNo')?.touched">
+                                whatsappNo is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Season Type</mat-label>
+                            <mat-select formControlName="seasonId" [(ngModel)]="ProductMasterModel.seasonId" >
+                              <mat-option *ngFor="let food of foods" [value]="food.seasonId">
+                                {{food.seasonName}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
                     </div>
                 </div>
                 <div class="row">
-
+                    <div class="form-group col-md-4">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label class="">Mrp</mat-label>
+                            <input matInput placeholder="Mrp" formControlName="mrp"
+                                [(ngModel)]="ProductMasterModel.mrp" minlength="1">
+                            <mat-error
+                                *ngIf="ProductMasterForm.get('mrp')?.hasError('required') && ProductMasterForm.get('mrp')?.touched">
+                                mrp is required</mat-error>
+                        </mat-form-field>
+                    </div>
                     <div class="mb-3 col-md-4">
                         <mat-form-field class="example-full-width" style="width:100%;" appearance="outline">
                             <mat-label>Status</mat-label>
-                            <mat-select matInput formControlName="status">
+                            <mat-select matInput [(ngModel)]="ProductMasterModel.status" formControlName="status">
                                 <mat-option>Select Status</mat-option>
                                 <mat-option value="Active">Active</mat-option>
                                 <mat-option value="Inactive">Inactive</mat-option>
                             </mat-select>
                             <mat-error
-                                *ngIf="GalleryMasterForm.get('status')?.hasError('required') && GalleryMasterForm.get('status')?.touched">
+                                *ngIf="ProductMasterForm.get('status')?.hasError('required') && ProductMasterForm.get('status')?.touched">
                                 Status is required</mat-error>
                         </mat-form-field>
                     </div>
@@ -115,23 +122,29 @@
             </ng-container>
 
             <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name </th>
                 <td mat-cell *matCellDef="let element"> {{element?.name}} </td>
             </ng-container>
 
 
+            <ng-container matColumnDef="whatsappNo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Whatsapp Number</th>
+                <td mat-cell *matCellDef="let element"> {{element?.whatsappNo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="productImage">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Product Image</th>
+                <td mat-cell *matCellDef="let element"> {{element?.productImage}} </td>
+            </ng-container>
             <ng-container matColumnDef="type">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
                 <td mat-cell *matCellDef="let element"> {{element?.type}} </td>
             </ng-container>
-            <ng-container matColumnDef="price">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-                <td mat-cell *matCellDef="let element"> {{element?.price}} </td>
+            <ng-container matColumnDef="mrp">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mrp</th>
+                <td mat-cell *matCellDef="let element"> {{element?.mrp}} </td>
             </ng-container>
-            <ng-container matColumnDef="image">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
-                <td mat-cell *matCellDef="let element"><img src="{{element?.image}}" alt=""></td>
-            </ng-container>
+
             <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                 <td mat-cell *matCellDef="let element"> {{element?.status}} </td>

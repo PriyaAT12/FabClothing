@@ -12,12 +12,12 @@
       </div> -->
 
         <mat-divider></mat-divider>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/dashboard">Dashboard</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/homemaster">Home</a>
-        <a mat-list-item routerLink="list-item-active" routerLink="/admin/layout/aboutusmaster">About Us</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/gallerymaster">Gallery</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/seasonwisemaster">Season Wise</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/contactusmaster">Contact Us</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/dashboard"  [ngClass]="{'active': dashboard == true}" (click)="activePageChange('dashboard')">Dashboard</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/homemaster" [ngClass]="{'active': home == true}" (click)="activePageChange('home')">Home Master</a>
+        <a mat-list-item routerLink="list-item-active" routerLink="/admin/layout/aboutusmaster" [ngClass]="{'active': about == true}" (click)="activePageChange('about')">About Master</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/seasonwisemaster"[ngClass]="{'active': seasonwise == true}" (click)="activePageChange('seasonwise')">Season Master</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/productmaster" [ngClass]="{'active': gallery == true}" (click)="activePageChange('gallery')">Product Master</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/layout/contactusmaster" [ngClass]="{'active': contactus == true}" (click)="activePageChange('contactus')">Contact Master</a>
         <!-- <h2 matSubheader>Tools</h2>
       <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
         <mat-icon>import_contacts</mat-icon>

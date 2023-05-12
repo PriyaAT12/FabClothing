@@ -1,12 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { mainlineMaster } from 'src/app/shared/allModel';
-// import { getAllMainlineMaster, mainline } from 'src/app/shared/allURL';
 import { HttpmethodsService } from 'src/app/shared/httpmethods.service';
 import { ToastrService } from 'ngx-toastr';
+import { bannerMaster } from 'src/app/shared/allModel';
+import { createBanner, fileupload, getAllBannermaster, updateBanner } from 'src/app/shared/allURL';
 
 @Component({
   selector: 'app-homemaster',
@@ -15,63 +15,85 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomemasterComponent implements OnInit {
 
-  adminId: any
   issubmit: boolean = true
   isupdate: boolean = false
-  public isVisible: boolean = false;
-  Role!: string;
 
-  registerationForm!: FormGroup;
-  mainlineMasterModel = new mainlineMaster()
+  BannerMasterForm!: FormGroup;
+  BannerMasterModel = new bannerMaster()
+  filetoupload: any;
 
   constructor(private fb: FormBuilder, private service: HttpmethodsService, private toastr: ToastrService) { }
 
-  displayedColumns: string[] = [ 'startNumber', 'endNumber','status'];
-  dataSource = new MatTableDataSource<mainlineMaster>();
-  @ViewChild(MatSort, { static: true }) sort: MatSort | null = null;
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  @ViewChild('epltable', { static: false }) epltable: ElementRef | undefined;
+  displayedColumns: string[] = [ 'Sr.No.','bannerName', 'startDate','status','Action'];
+  dataSource = new MatTableDataSource<bannerMaster>();
+  @ViewChild(MatSort, { static: true }) sort?: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | any;
+  @ViewChild('epltable', { static: false }) epltable?: ElementRef;
   ngOnInit(): void {
-    this.Role = String(localStorage.getItem("roles"))
-    this.registerationForm = this.fb.group({
-      startNumber: [''],
-      endNumber: [''],
-      status: [''],
-      admin_id: ['']
+    this.BannerMasterForm = this.fb.group({
+      bannerName: ['',Validators.required],
+      bannerDescription: ['',Validators.required],
+      bannerType: ['' , Validators.required],
+      bannerPath: ['', Validators.required],
+      status:['', Validators.required],
+      startDate:['', Validators.required],
+      endDate:['', Validators.required]
     })
-    this.getAllNumber();
+    this.getAllBanner();
   }
 
   // to submit the data
   submit() {
-    // console.log(this.mainlineMasterModel);
-    // this.adminId = localStorage.getItem('adminId')
-    // console.log(this.adminId);
-    // this.mainlineMasterModel.admin_id = Number(localStorage.getItem('adminId'))
-    // this.service.postRequest(mainline, this.mainlineMasterModel).subscribe(
-    //   (res) => {
-    //     console.log(res);
-    //     this.isVisible = true;
-    //     this.registerationForm.reset()
-    //     setTimeout(() => this.isVisible = false, 2500)
-    //   })
+    console.log(this.BannerMasterModel);
+    this.service.postRequest(createBanner, this.BannerMasterModel).subscribe(
+      (res) => {
+        console.log(res);
+        this.issubmit = true;
+        this.isupdate = false;
+        this.BannerMasterForm.reset()
+      })
+  }
+
+  handleFileInput(e: FileList | any) {
+    this.filetoupload = e.target.files.item(0);
+    this.service
+      .fileUpload(fileupload, this.filetoupload)
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data.status == true) {
+          this.BannerMasterModel.bannerPath = data.path;
+        } else {
+          this.toastr.error(data.path, 'error!', { timeOut: 500 });
+        }
+      });
   }
 
   // to update the data
   update() {
-
+    this.service
+      .putRequest(updateBanner, this.BannerMasterModel)
+      .subscribe((res) => {
+        console.log(res);
+        this.toastr.success('Updated Successfully!');
+        this.issubmit = true;
+        this.isupdate = false;
+      });
   }
-
+  edit(item: any) {
+    // console.log(item);
+    this.BannerMasterModel = item;
+    this.issubmit = false;
+    this.isupdate = true;
+  }
  
-  getAllNumber() {
-    
-    // this.service.getwithHeaderRequest(getAllMainlineMaster).subscribe((data: any) => {
-    //   this.dataSource = new MatTableDataSource(data);
-    //   console.log(data)
-    //   if (this.paginator) {
-    //     this.dataSource.paginator = this.paginator;
-    //   }
-    // })
+  getAllBanner() {
+    this.service.getwithHeaderRequest(getAllBannermaster).subscribe((data: any) => {
+      this.dataSource = new MatTableDataSource(data);
+      console.log(data)
+      if (this.paginator) {
+        this.dataSource.paginator = this.paginator;
+      }
+    })
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

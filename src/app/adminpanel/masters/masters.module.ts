@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MastersRoutingModule } from './masters-routing.module';
 import { HomemasterComponent } from './homemaster/homemaster.component';
 import { AboutusmasterComponent } from './aboutusmaster/aboutusmaster.component';
@@ -17,6 +16,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { ProductmasterComponent } from './productmaster/productmaster.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     GallerymasterComponent,
     SeasonwisemasterComponent,
     ContactusmasterComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProductmasterComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatPaginatorModule,
     MatCardModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    AngularEditorModule
   ]
 })
 export class MastersModule { }

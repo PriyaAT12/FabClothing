@@ -15,7 +15,7 @@
                         <h1>Admin Log In</h1>
                         <div class="form-group input-field">
                             <input type="text" class="input" id="phone" required autocomplete="off"
-                                formControlName="phone" 
+                                formControlName="phone" [(ngModel)]="loginMasterModel.phone"
                                 [ngClass]="{ 'is-invalid': loginform.get('phone')?.touched && loginform.get('phone')?.invalid }">
                             <label for="phone">Phone</label>
                             <span style="color: red;" *ngIf="phone?.touched && phone?.invalid">
@@ -25,7 +25,7 @@
 
                         <div class="form-group input-field">
                             <input type="password" class="input" id="password" required autocomplete="off"
-                                formControlName="password" 
+                                formControlName="password" [(ngModel)]="loginMasterModel.password"
                                 [ngClass]="{ 'is-invalid': loginform.get('password')?.touched && loginform.get('password')?.invalid }">
                             <label for="password">Password</label>
                             <span style="color: red;" *ngIf="password?.touched && password?.invalid">
